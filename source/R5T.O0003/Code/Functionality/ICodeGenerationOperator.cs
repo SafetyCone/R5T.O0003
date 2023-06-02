@@ -12,7 +12,7 @@ namespace R5T.O0003
     public partial interface ICodeGenerationOperator : IFunctionalityMarker
     {
         /// <summary>
-        /// Gets the console application template program code file content.
+        /// Gets the console application template program class content.
         /// </summary>
         /// <remarks>
         /// Does not contain a using directive for the "System" namespace.
@@ -34,6 +34,30 @@ namespace ConsoleApp
     }}
 }}
 ".ToCodeFileContent();
+
+            return output;
+        }
+
+        /// <summary>
+        /// Gets the console application template program file content.
+        /// </summary>
+        /// <remarks>
+        /// Contains a using directive for the "System" namespace.
+        /// </remarks>
+        public ICodeFileContent Generate_ProgramFileContent(
+            INamespaceName namespaceName)
+        {
+            var programClassContent = this.Generate_Program(namespaceName);
+
+            var output =
+$@"
+using System;
+
+
+{programClassContent}
+"
+// Preserve the ending blank line.
+.ToCodeFileContent_WithoutTrimEnd();
 
             return output;
         }

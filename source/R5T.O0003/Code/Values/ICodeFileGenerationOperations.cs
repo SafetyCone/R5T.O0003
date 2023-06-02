@@ -14,13 +14,13 @@ namespace R5T.O0003
     {
         /// <inheritdoc cref="ICodeGenerationOperations.Generate_Program(INamespaceName)"/>
         public bool Write_ProgramFile_Synchronous(
-            ICodeFilePath codefilePath,
+            ICSharpFilePath csfilePath,
             INamespaceName namespaceName,
             FileExistsBehavior fileExistsBehavior = IFileExistsBehaviors.Default)
         {
             return Instances.CodeFileOperator.Write_Code_Synchronous(
-                codefilePath,
-                Instances.CodeGenerationOperations.Generate_Program(namespaceName),
+                csfilePath,
+                Instances.CodeGenerationOperations.Generate_ProgramFileContent(namespaceName),
                 fileExistsBehavior);
         }
 

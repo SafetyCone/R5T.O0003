@@ -16,5 +16,12 @@ namespace R5T.O0003
         {
             return () => Instances.CodeGenerationOperator.Generate_Program(namespaceName);
         }
+
+        /// <inheritdoc cref="ICodeGenerationOperator.Generate_ProgramFileContent(INamespaceName)"/>
+        public Func<ICode> Generate_ProgramFileContent(
+            INamespaceName namespaceName)
+        {
+            return () => Instances.CodeGenerationOperator.Generate_ProgramFileContent(namespaceName);
+        }
     }
 }
